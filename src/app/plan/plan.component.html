@@ -1,0 +1,33 @@
+<div [formGroup]="planForm" class="step-container">
+  <div class="step-content">
+    <h1>Select your plan</h1>
+    <p>You have the option of monthly or yearly billing</p>
+    <div class="plans">
+      <div
+        *ngFor="let plan of plans; trackBy: trackByFn"
+        class="plan"
+        [class.selected]="planForm.get('chosenPlan')?.value === plan.name"
+        (click)="selectPlan(plan.name)"
+        role="button"
+        [attr.aria-pressed]="planForm.get('chosenPlan')?.value === plan.name"
+        tabindex="0"
+      >
+        <i [class]="plan.icon"></i>
+        <p>
+          {{ plan.name }} <span>{{ plan.price }}</span>
+        </p>
+      </div>
+    </div>
+    <div>Your selected plan is: {{ planForm.get("chosenPlan")?.value }}</div>
+
+    <div>
+      <button
+        mat-button
+        matStepperNext
+        [disabled]="!planForm.get('chosenPlan')?.value"
+      >
+        Next
+      </button>
+    </div>
+  </div>
+</div>

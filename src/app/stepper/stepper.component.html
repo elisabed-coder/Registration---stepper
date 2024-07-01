@@ -1,0 +1,67 @@
+<div class="container">
+  <form [formGroup]="Empregister" (ngSubmit)="handleSubmit()">
+    <div class="form-layout">
+      <div class="step-info">
+        <div
+          class="step-label"
+          [ngClass]="{ active: stepper.selectedIndex === 0 }"
+        >
+          <span>1</span>
+          <p><span>STEP 1</span> YOUR INFO</p>
+        </div>
+        <div
+          class="step-label"
+          [ngClass]="{ active: stepper.selectedIndex === 1 }"
+        >
+          <span>2</span>
+          <p>
+            <span>STEP 2</span>
+            SELECT PLAN
+          </p>
+        </div>
+        <div
+          class="step-label"
+          [ngClass]="{ active: stepper.selectedIndex === 2 }"
+        >
+          <span>3</span>
+          <p><span>STEP 3</span> ADD-ONS</p>
+        </div>
+        <div
+          class="step-label"
+          [ngClass]="{ active: stepper.selectedIndex === 3 }"
+        >
+          <span>4</span>
+          <p><span>STEP 4</span> SUMMARY</p>
+        </div>
+      </div>
+      <mat-stepper
+        class="custom-stepper"
+        orientation="vertical"
+        [linear]="isLinear"
+        #stepper
+      >
+        >
+        <mat-step [stepControl]="personalForm">
+          <app-personal-info [personalForm]="personalForm"></app-personal-info>
+        </mat-step>
+        <mat-step [stepControl]="planForm">
+          <app-plan [planForm]="planForm"></app-plan>
+        </mat-step>
+        <mat-step [stepControl]="addressForm">
+          <app-add-on [addressForm]="addressForm"></app-add-on>
+        </mat-step>
+        <mat-step>
+          <div class="step-content">
+            <p>You are now done.</p>
+            <div>
+              <button mat-raised-button matStepperPrevious color="primary">
+                Back
+              </button>
+              <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+          </div>
+        </mat-step>
+      </mat-stepper>
+    </div>
+  </form>
+</div>

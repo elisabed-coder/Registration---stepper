@@ -1,0 +1,55 @@
+.step-content {
+  h1 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-top: 20px;
+  }
+  > p {
+    color: rgba(0, 0, 0, 0.593);
+  }
+}
+
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  align-items: flex-start;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.plans {
+  display: flex;
+  justify-content: space-around;
+}
+
+.plan {
+  border: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s;
+  width: 100px;
+}
+
+.plan.selected {
+  background-color: #cce5ff;
+  border-color: #004085;
+}
+
+.plan i {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.plan p {
+  margin: 0;
+}
+
+.plan span {
+  display: block;
+  font-size: 12px;
+  color: #666;
+}
