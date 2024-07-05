@@ -23,17 +23,27 @@ export class StepperComponent implements OnInit {
   constructor(private builder: FormBuilder) {}
   Empregister = this.builder.group({
     personalInfo: this.builder.group({
-      fullname: this.builder.control('', Validators.required),
+      fullname: this.builder.control('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(17),
+      ]),
       email: this.builder.control('', [Validators.required, Validators.email]),
-      phone: this.builder.control('', Validators.required),
+
+      phone: this.builder.control('', [
+        Validators.required,
+        Validators.pattern('\\+995[0-9]{9}'),
+      ]),
     }),
     plan: this.builder.group({
       chosenPlan: ['', Validators.required],
+      isYearly: [false],
     }),
     address: this.builder.group({
-      street: this.builder.control('', Validators.required),
-      city: this.builder.control('', Validators.required),
-      pin: this.builder.control('', Validators.required),
+      onlineService: [true],
+      largerStorage: [true],
+      customizableProfile: [false],
+      price: [0],
     }),
   });
 
@@ -57,6 +67,10 @@ export class StepperComponent implements OnInit {
   }
   get addressForm() {
     return this.Empregister.get('address') as FormGroup;
+  }
+
+  get isYearly() {
+    return this.planForm.get('isYearly')?.value;
   }
 
   handleSubmit() {

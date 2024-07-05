@@ -1,11 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  FormsModule,
-  Validators,
-} from '@angular/forms';
-import { MatRadioModule } from '@angular/material/radio';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Plan } from '../interfaces/plan';
 
 @Component({
@@ -15,11 +9,30 @@ import { Plan } from '../interfaces/plan';
 })
 export class PlanComponent implements OnInit {
   @Input() planForm!: FormGroup;
+  isYearly: boolean = false;
+  submitted: boolean = false;
+
   plans: Plan[] = [
-    { name: 'Arcade', icon: 'fa fa-neuter', price: '$9/mo' },
-    { name: 'Advanced', icon: 'fa fa-gamepad', price: '$12/mo' },
-    { name: 'Pro', icon: 'fa-regular fa-vr-cardboard', price: '$15/mo' },
+    {
+      name: 'Arcade',
+      icon: 'fa fa-neuter',
+      monthlyPrice: 9,
+      bgColor: '#FFA500',
+    },
+    {
+      name: 'Advanced',
+      icon: 'fa fa-gamepad',
+      monthlyPrice: 12,
+      bgColor: ' #c3195d',
+    },
+    {
+      name: 'Pro',
+      icon: 'fa fa-user',
+      monthlyPrice: 15,
+      bgColor: '#0000FF',
+    },
   ];
+
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
@@ -36,13 +49,45 @@ export class PlanComponent implements OnInit {
         this.fb.control('', Validators.required)
       );
     }
+    if (!this.planForm.get('isYearly')) {
+      this.planForm.addControl('isYearly', this.fb.control(false));
+    }
   }
 
-  selectPlan(plan: string): void {
-    this.planForm.get('chosenPlan')?.setValue(plan);
+  selectPlan(plan: Plan): void {
+    this.submitted = true;
+    this.planForm
+      .get('chosenPlan')
+      ?.setValue(this.isYearly ? plan.monthlyPrice * 10 : plan.monthlyPrice);
+  }
+
+  checkFormValidity(): void {
+    this.submitted = true;
+    if (!this.planForm.get('chosenPlan')?.value) {
+      // Form is invalid, don't proceed
+      return;
+    }
   }
 
   trackByFn(index: number, item: Plan): string {
     return item.name;
+  }
+
+  getPrice(plan: Plan): string {
+    const price = this.isYearly ? plan.monthlyPrice * 10 : plan.monthlyPrice;
+    return `$${price}/${this.isYearly ? 'yr' : 'mo'}`;
+  }
+
+  toggleYearly(): void {
+    this.isYearly = !this.isYearly;
+    this.planForm.get('isYearly')?.setValue(this.isYearly);
+  }
+
+  isPlanSelected(plan: Plan): boolean {
+    const chosenPlanValue = this.planForm.get('chosenPlan')?.value;
+    const planPrice = this.isYearly
+      ? plan.monthlyPrice * 10
+      : plan.monthlyPrice;
+    return chosenPlanValue === planPrice;
   }
 }

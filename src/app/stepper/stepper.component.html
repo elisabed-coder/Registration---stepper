@@ -48,17 +48,18 @@
           <app-plan [planForm]="planForm"></app-plan>
         </mat-step>
         <mat-step [stepControl]="addressForm">
-          <app-add-on [addressForm]="addressForm"></app-add-on>
+          <app-add-on
+            [addressForm]="addressForm"
+            [isYearly]="isYearly"
+          ></app-add-on>
         </mat-step>
         <mat-step>
-          <div class="step-content">
-            <p>You are now done.</p>
-            <div>
-              <button mat-raised-button matStepperPrevious color="primary">
-                Back
-              </button>
-              <button mat-button (click)="stepper.reset()">Reset</button>
-            </div>
+          <app-summary></app-summary>
+          <div>
+            <button mat-raised-button matStepperPrevious color="primary">
+              Back
+            </button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
           </div>
         </mat-step>
       </mat-stepper>

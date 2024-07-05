@@ -1,32 +1,54 @@
 <div [formGroup]="planForm" class="step-container">
   <div class="step-content">
     <h1>Select your plan</h1>
-    <p>You have the option of monthly or yearly billing</p>
+    <legend>You have the option of monthly or yearly billing</legend>
+    <div
+      *ngIf="submitted && !planForm.get('chosenPlan')?.value"
+      class="validation-message"
+    >
+      Plan is required
+    </div>
     <div class="plans">
       <div
         *ngFor="let plan of plans; trackBy: trackByFn"
         class="plan"
-        [class.selected]="planForm.get('chosenPlan')?.value === plan.name"
-        (click)="selectPlan(plan.name)"
+        [class.selected]="isPlanSelected(plan)"
+        [class.error]="submitted && !planForm.get('chosenPlan')?.value"
+        (click)="selectPlan(plan)"
+        (keydown.enter)="selectPlan(plan)"
         role="button"
-        [attr.aria-pressed]="planForm.get('chosenPlan')?.value === plan.name"
+        [attr.aria-pressed]="
+          planForm.get('chosenPlan')?.value === getPrice(plan)
+        "
         tabindex="0"
       >
-        <i [class]="plan.icon"></i>
-        <p>
-          {{ plan.name }} <span>{{ plan.price }}</span>
-        </p>
+        <div class="icon-container" [style.background-color]="plan.bgColor">
+          <i [class]="plan.icon"></i>
+        </div>
+        <h2>
+          {{ plan.name }}
+        </h2>
+        <span>{{ getPrice(plan) }}</span>
+        <p *ngIf="planForm.get('isYearly')?.value">2 months free</p>
       </div>
     </div>
-    <div>Your selected plan is: {{ planForm.get("chosenPlan")?.value }}</div>
-
-    <div>
+    <div class="selectPlan">
+      <p [ngClass]="{ active: !planForm.get('isYearly')?.value }">Monthly</p>
+      <mat-slide-toggle
+        [checked]="planForm.get('isYearly')?.value"
+        (change)="toggleYearly()"
+      ></mat-slide-toggle>
+      <p [ngClass]="{ active: planForm.get('isYearly')?.value }">Yearly</p>
+    </div>
+    <div class="button-container">
+      <button mat-button matStepperPrevious>Go Back</button>
       <button
-        mat-button
+        class="next-button"
+        mat-raised-button
         matStepperNext
-        [disabled]="!planForm.get('chosenPlan')?.value"
+        (click)="checkFormValidity()"
       >
-        Next
+        Next Step
       </button>
     </div>
   </div>

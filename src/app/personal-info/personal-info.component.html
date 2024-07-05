@@ -1,9 +1,22 @@
 <div [formGroup]="personalForm" class="step-container">
   <div class="step-content">
-    <h1>Personal Info</h1>
-    <p>Please provie your name, email address and phone number.</p>
-    <mat-form-field>
-      <mat-label>Name</mat-label>
+    <h1 class="header">Personal Info</h1>
+    <legend>Please provie your name, email address and phone number.</legend>
+    <mat-form-field floatLabel="always">
+      <div class="label-error-container">
+        <mat-label>Name </mat-label>
+        <mat-error
+          *ngIf="fullname?.invalid && (fullname?.dirty || fullname?.touched)"
+        >
+          <p *ngIf="fullname?.errors?.['required']">Name is required</p>
+          <p *ngIf="fullname?.errors?.['minlength']">
+            Name must be at least 3 characters
+          </p>
+          <p *ngIf="fullname?.errors?.['maxlength']">
+            Name must be less than 17 characters long
+          </p>
+        </mat-error>
+      </div>
       <input
         matInput
         placeholder="e.g.Stephen King"
@@ -11,8 +24,16 @@
         required
       />
     </mat-form-field>
-    <mat-form-field>
-      <mat-label>Email Address</mat-label>
+    <mat-form-field floatLabel="always">
+      <div class="label-error-container">
+        <mat-label>Email Address</mat-label>
+        <mat-error *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+          <p *ngIf="email?.errors?.['required']">Email is required</p>
+          <p *ngIf="email?.invalid && email?.errors?.['email']">
+            Invalid Format
+          </p>
+        </mat-error>
+      </div>
       <input
         matInput
         placeholder="e.g. stephenKing@lorem.com"
@@ -20,17 +41,25 @@
         required
       />
     </mat-form-field>
-    <mat-form-field>
-      <mat-label>Phone Number</mat-label>
+    <mat-form-field floatLabel="always">
+      <div class="label-error-container">
+        <mat-label>Phone Number</mat-label>
+        <mat-error *ngIf="(phone?.invalid && phone?.touched) || phone?.dirty">
+          <p *ngIf="phone?.errors?.['required']">Phone number is required</p>
+          <p *ngIf="phone?.errors?.['pattern']">Invalid Format</p>
+        </mat-error>
+      </div>
       <input
         matInput
-        placeholder="e.g. +1 234 567 890"
+        placeholder="e.g. +995 551 071 649"
         formControlName="phone"
         required
       />
     </mat-form-field>
-    <div>
-      <button mat-raised-button matStepperNext color="primary">Next</button>
+    <div class="btn-box">
+      <button mat-raised-button matStepperNext (click)="validateForm()">
+        Next Step
+      </button>
     </div>
   </div>
 </div>

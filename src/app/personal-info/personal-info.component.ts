@@ -11,4 +11,19 @@ export class PersonalInfoComponent implements OnInit {
   constructor(private builder: FormBuilder) {}
 
   ngOnInit(): void {}
+
+  get fullname() {
+    return this.personalForm.get('fullname');
+  }
+
+  get email() {
+    return this.personalForm.get('email');
+  }
+  get phone() {
+    return this.personalForm.get('phone');
+  }
+
+  validateForm() {
+    this.personalForm.markAllAsTouched();
+  }
 }

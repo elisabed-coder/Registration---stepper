@@ -1,5 +1,6 @@
 export interface Plan {
   name: string;
   icon: string;
-  price: string;
+  monthlyPrice: number;
+  bgColor: string;
 }

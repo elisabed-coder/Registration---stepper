@@ -1,0 +1,74 @@
+.step-container {
+  display: flex;
+  align-items: flex-start;
+  .check-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #d6d9e6;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    &.selected {
+      border-color: #473dff;
+    }
+    span {
+      margin-left: auto;
+      color: #473dff;
+    }
+  }
+  .buttons-box {
+    display: flex;
+    justify-content: space-between;
+    font-size: 21px;
+
+    .submit-btn {
+      background-color: #02295a;
+      color: #f0f6ff;
+      align-self: right bottom;
+      height: 4rem;
+      width: 10.4rem;
+      font-size: 21px;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .step-content {
+    padding: 3.1rem 113px 3.1rem 135px;
+    h1 {
+      margin-top: 20px;
+      font-size: 43px;
+      font-weight: 500;
+      margin-bottom: 0.7rem;
+    }
+    legend {
+      font-size: 21px;
+      color: #9699ab;
+      margin-bottom: 3.1rem;
+    }
+  }
+
+  .check-box {
+    height: 6.6rem;
+    margin-bottom: 1.5rem;
+    .mat-checkbox {
+      margin: 0 2rem;
+    }
+    div {
+      margin-left: 2rem;
+      h2 {
+        font-size: 22px;
+        margin-bottom: 0.2rem;
+      }
+      p {
+        font-size: 19px;
+        color: #9699ab;
+      }
+    }
+
+    span {
+      font-size: 19px;
+      margin-right: 2rem;
+    }
+  }
+}

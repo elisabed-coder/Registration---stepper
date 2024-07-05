@@ -4,11 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatStepperModule } from '@angular/material/stepper';
 import { CdkStepperModule } from '@angular/cdk/stepper';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
+import { JsonPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
@@ -21,6 +24,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { StepperComponent } from './stepper/stepper.component';
 import { PlanComponent } from './plan/plan.component';
 import { AddOnComponent } from './add-on/add-on.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { SummaryComponent } from './summary/summary.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +34,7 @@ import { AddOnComponent } from './add-on/add-on.component';
     StepperComponent,
     PlanComponent,
     AddOnComponent,
+    SummaryComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +47,9 @@ import { AddOnComponent } from './add-on/add-on.component';
     MatFormFieldModule,
     CdkStepperModule,
     MatRadioModule,
+    MatSlideToggleModule,
+    FormsModule,
+    MatCheckboxModule,
   ],
   exports: [CdkStepperModule],
   providers: [
