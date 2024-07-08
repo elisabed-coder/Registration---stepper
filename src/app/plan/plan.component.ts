@@ -36,38 +36,40 @@ export class PlanComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.initForm();
+    // this.initForm();
   }
 
-  private initForm(): void {
-    if (!this.planForm) {
-      this.planForm = this.fb.group({});
-    }
-    if (!this.planForm.get('chosenPlan')) {
-      this.planForm.addControl(
-        'chosenPlan',
-        this.fb.control('', Validators.required)
-      );
-    }
-    if (!this.planForm.get('isYearly')) {
-      this.planForm.addControl('isYearly', this.fb.control(false));
-    }
-  }
+  // private initForm(): void {
+  //   if (!this.planForm) {
+  //     this.planForm = this.fb.group({});
+  //   }
+  //   if (!this.planForm.get('chosenPlan')) {
+  //     this.planForm.addControl(
+  //       'chosenPlan',
+  //       this.fb.control('', Validators.required)
+  //     );
+  //   }
+  //   if (!this.planForm.get('isYearly')) {
+  //     this.planForm.addControl('isYearly', this.fb.control(false));
+  //   }
+  // }
 
   selectPlan(plan: Plan): void {
-    this.submitted = true;
-    this.planForm
-      .get('chosenPlan')
-      ?.setValue(this.isYearly ? plan.monthlyPrice * 10 : plan.monthlyPrice);
+    // this.submitted = true;
+    const selectedPlan = {
+      name: plan.name,
+      price: this.isYearly ? plan.monthlyPrice * 10 : plan.monthlyPrice,
+    };
+    this.planForm.get('chosenPlan')?.setValue(selectedPlan);
   }
 
-  checkFormValidity(): void {
-    this.submitted = true;
-    if (!this.planForm.get('chosenPlan')?.value) {
-      // Form is invalid, don't proceed
-      return;
-    }
-  }
+  // checkFormValidity(): void {
+  //   this.submitted = true;
+  //   if (!this.planForm.get('chosenPlan')?.value) {
+  //     // Form is invalid, don't proceed
+  //     return;
+  //   }
+  // }
 
   trackByFn(index: number, item: Plan): string {
     return item.name;
@@ -88,6 +90,6 @@ export class PlanComponent implements OnInit {
     const planPrice = this.isYearly
       ? plan.monthlyPrice * 10
       : plan.monthlyPrice;
-    return chosenPlanValue === planPrice;
+    return chosenPlanValue && chosenPlanValue.price === planPrice;
   }
 }

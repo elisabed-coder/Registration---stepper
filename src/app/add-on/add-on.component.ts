@@ -1,11 +1,5 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { JsonPipe } from '@angular/common';
-import { ChangeDetectionStrategy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Plan } from '../interfaces/plan';
-import { addOn } from '../interfaces/addOn';
 
 @Component({
   selector: 'app-add-on',

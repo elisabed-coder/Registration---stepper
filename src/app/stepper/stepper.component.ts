@@ -52,10 +52,13 @@ export class StepperComponent implements OnInit {
   handleNextStep() {
     if (this.stepper.selectedIndex === 0 && this.personalForm.valid) {
       this.stepper.next();
+      console.log('Personal Info:', this.personalForm.value);
     } else if (this.stepper.selectedIndex === 1 && this.planForm.valid) {
       this.stepper.next();
+      console.log('Plan Info:', this.planForm.value);
     } else if (this.stepper.selectedIndex === 2 && this.addressForm.valid) {
       this.stepper.next();
+      console.log('Address Info:', this.addressForm.value);
     }
   }
 
