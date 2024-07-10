@@ -1,0 +1,28 @@
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  padding-top: 10rem;
+  article {
+    max-width: 580px;
+    margin-left: 0.6rem;
+    h1 {
+      font-weight: 600;
+    }
+    p {
+      color: #9699ab;
+      font-size: 21px;
+      line-height: 1.7rem;
+    }
+  }
+}
+
+@media (min-width: 1300px) {
+  h1 {
+    margin-bottom: 1.2rem;
+    margin-top: 2.2rem;
+    font-size: 43px;
+  }
+}

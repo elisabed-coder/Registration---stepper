@@ -6,15 +6,11 @@ import { AppComponent } from './app.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatStepperModule } from '@angular/material/stepper';
-import { CdkStepperModule } from '@angular/cdk/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
-import { JsonPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
-import { CdkAccordionModule } from '@angular/cdk/accordion';
 import {
   MAT_RADIO_DEFAULT_OPTIONS,
   MatRadioModule,
@@ -26,6 +22,9 @@ import { PlanComponent } from './plan/plan.component';
 import { AddOnComponent } from './add-on/add-on.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { SummaryComponent } from './summary/summary.component';
+import { RouterModule } from '@angular/router';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import { DoneMessageComponent } from './done-message/done-message.component'; // Ensure this import is present
 
 @NgModule({
   declarations: [
@@ -35,6 +34,7 @@ import { SummaryComponent } from './summary/summary.component';
     PlanComponent,
     AddOnComponent,
     SummaryComponent,
+    DoneMessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +46,7 @@ import { SummaryComponent } from './summary/summary.component';
     MatInputModule,
     MatFormFieldModule,
     CdkStepperModule,
+    RouterModule,
     MatRadioModule,
     MatSlideToggleModule,
     FormsModule,

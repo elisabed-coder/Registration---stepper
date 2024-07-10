@@ -2,32 +2,30 @@
   <div class="step-content">
     <h1>Select your plan</h1>
     <legend>You have the option of monthly or yearly billing</legend>
-    <div
+    <!-- <div
       *ngIf="submitted && !planForm.get('chosenPlan')?.value"
       class="validation-message"
     >
       Plan is required
-    </div>
+    </div> -->
     <div class="plans">
       <div
         *ngFor="let plan of plans; trackBy: trackByFn"
         class="plan"
         [class.selected]="isPlanSelected(plan)"
-        [class.error]="submitted && !planForm.get('chosenPlan')?.value"
+        [class.error]="planError"
         (click)="selectPlan(plan)"
         (keydown.enter)="selectPlan(plan)"
         role="button"
         [attr.aria-pressed]="
-          planForm.get('chosenPlan')?.value === getPrice(plan)
+          planForm.get('chosenPlan')?.value?.name === plan.name
         "
         tabindex="0"
       >
         <div class="icon-container" [style.background-color]="plan.bgColor">
           <i [class]="plan.icon"></i>
         </div>
-        <h2>
-          {{ plan.name }}
-        </h2>
+        <h2>{{ plan.name }}</h2>
         <span>{{ getPrice(plan) }}</span>
         <p *ngIf="planForm.get('isYearly')?.value">2 months free</p>
       </div>
@@ -42,10 +40,14 @@
     </div>
     <div class="button-container">
       <button mat-button matStepperPrevious>Go Back</button>
-      <button class="next-button" mat-raised-button matStepperNext>
+      <button
+        class="next-button"
+        mat-raised-button
+        matStepperNext
+        (click)="validateForm()"
+      >
         Next Step
       </button>
     </div>
   </div>
 </div>
-<!-- (click)="checkFormValidity()" -->

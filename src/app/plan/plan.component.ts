@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Plan } from '../interfaces/plan';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Plan, plans } from '../interfaces/plan';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-plan',
@@ -9,53 +10,22 @@ import { Plan } from '../interfaces/plan';
 })
 export class PlanComponent implements OnInit {
   @Input() planForm!: FormGroup;
+  @Input() parentStepper!: MatStepper; // Input for parent stepper
+
   isYearly: boolean = false;
   submitted: boolean = false;
-
-  plans: Plan[] = [
-    {
-      name: 'Arcade',
-      icon: 'fa fa-neuter',
-      monthlyPrice: 9,
-      bgColor: '#FFA500',
-    },
-    {
-      name: 'Advanced',
-      icon: 'fa fa-gamepad',
-      monthlyPrice: 12,
-      bgColor: ' #c3195d',
-    },
-    {
-      name: 'Pro',
-      icon: 'fa fa-user',
-      monthlyPrice: 15,
-      bgColor: '#0000FF',
-    },
-  ];
-
+  plans: Plan[] = plans;
+  planError: boolean = false;
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    // this.initForm();
+    // Set initial isYearly value from the form
+    this.isYearly = this.planForm.get('isYearly')?.value || false;
   }
 
-  // private initForm(): void {
-  //   if (!this.planForm) {
-  //     this.planForm = this.fb.group({});
-  //   }
-  //   if (!this.planForm.get('chosenPlan')) {
-  //     this.planForm.addControl(
-  //       'chosenPlan',
-  //       this.fb.control('', Validators.required)
-  //     );
-  //   }
-  //   if (!this.planForm.get('isYearly')) {
-  //     this.planForm.addControl('isYearly', this.fb.control(false));
-  //   }
-  // }
-
   selectPlan(plan: Plan): void {
-    // this.submitted = true;
+    this.submitted = true;
+    this.planError = false;
     const selectedPlan = {
       name: plan.name,
       price: this.isYearly ? plan.monthlyPrice * 10 : plan.monthlyPrice,
@@ -63,16 +33,8 @@ export class PlanComponent implements OnInit {
     this.planForm.get('chosenPlan')?.setValue(selectedPlan);
   }
 
-  // checkFormValidity(): void {
-  //   this.submitted = true;
-  //   if (!this.planForm.get('chosenPlan')?.value) {
-  //     // Form is invalid, don't proceed
-  //     return;
-  //   }
-  // }
-
-  trackByFn(index: number, item: Plan): string {
-    return item.name;
+  trackByFn(index: number, item: Plan): number {
+    return item.id;
   }
 
   getPrice(plan: Plan): string {
@@ -83,6 +45,17 @@ export class PlanComponent implements OnInit {
   toggleYearly(): void {
     this.isYearly = !this.isYearly;
     this.planForm.get('isYearly')?.setValue(this.isYearly);
+
+    // Update the price of the chosen plan if already selected
+    if (this.planForm.get('chosenPlan')?.value) {
+      const chosenPlanName = this.planForm.get('chosenPlan')?.value.name;
+      const selectedPlan = this.plans.find(
+        (plan) => plan.name === chosenPlanName
+      );
+      if (selectedPlan) {
+        this.selectPlan(selectedPlan);
+      }
+    }
   }
 
   isPlanSelected(plan: Plan): boolean {
@@ -91,5 +64,14 @@ export class PlanComponent implements OnInit {
       ? plan.monthlyPrice * 10
       : plan.monthlyPrice;
     return chosenPlanValue && chosenPlanValue.price === planPrice;
+  }
+
+  validateForm() {
+    this.submitted = true;
+    if (!this.planForm.get('chosenPlan')?.value) {
+      this.planError = true;
+      return false;
+    }
+    return false;
   }
 }

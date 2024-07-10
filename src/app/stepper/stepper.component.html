@@ -1,11 +1,12 @@
 <div class="container">
-  <form [formGroup]="Empregister" (ngSubmit)="handleSubmit()">
+  <form [formGroup]="Empregister">
     <div class="form-layout">
       <div class="step-info">
         <div
           class="step-label"
           [ngClass]="{ active: stepper.selectedIndex === 0 }"
         >
+          <!-- Step 1: Personal Info -->
           <span>1</span>
           <p><span>STEP 1</span> YOUR INFO</p>
         </div>
@@ -15,6 +16,7 @@
         >
           <span>2</span>
           <p>
+            <!-- Step 2: Plan Info -->
             <span>STEP 2</span>
             SELECT PLAN
           </p>
@@ -24,12 +26,14 @@
           [ngClass]="{ active: stepper.selectedIndex === 2 }"
         >
           <span>3</span>
+          <!-- Step 3: Add-Ons -->
           <p><span>STEP 3</span> ADD-ONS</p>
         </div>
         <div
           class="step-label"
           [ngClass]="{ active: stepper.selectedIndex === 3 }"
         >
+          <!-- Step 4: Summary -->
           <span>4</span>
           <p><span>STEP 4</span> SUMMARY</p>
         </div>
@@ -47,19 +51,34 @@
         <mat-step [stepControl]="planForm">
           <app-plan [planForm]="planForm"></app-plan>
         </mat-step>
-        <mat-step [stepControl]="addressForm">
-          <app-add-on
-            [addressForm]="addressForm"
-            [isYearly]="isYearly"
-          ></app-add-on>
+        <mat-step [stepControl]="addOn">
+          <app-add-on [addOn]="addOn" [isYearly]="isYearly"></app-add-on>
         </mat-step>
         <mat-step>
-          <app-summary></app-summary>
-          <div>
+          <app-summary
+            [personalInfoForm]="personalForm"
+            [planForm]="planForm"
+            [addOnForm]="addOn"
+            [isYearly]="isYearly"
+            *ngIf="!done"
+          ></app-summary>
+          <app-done-message *ngIf="done"></app-done-message>
+          <!--new added-->
+          <!--<div>
             <button mat-raised-button matStepperPrevious color="primary">
               Back
             </button>
             <button mat-button (click)="stepper.reset()">Reset</button>
+          </div> -->
+          <div class="buttons-box" *ngIf="!done">
+            <button mat-button matStepperPrevious>Go Back</button>
+            <button
+              mat-raised-button
+              class="submit-btn"
+              (click)="handleSubmit()"
+            >
+              Submit
+            </button>
           </div>
         </mat-step>
       </mat-stepper>

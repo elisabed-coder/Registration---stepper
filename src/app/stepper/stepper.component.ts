@@ -18,6 +18,7 @@ import { MatStepper } from '@angular/material/stepper';
 })
 export class StepperComponent implements OnInit {
   isLinear = true;
+  done: boolean = false;
   @ViewChild('stepper') private stepper!: MatStepper;
 
   constructor(private builder: FormBuilder) {}
@@ -39,7 +40,7 @@ export class StepperComponent implements OnInit {
       chosenPlan: ['', Validators.required],
       isYearly: [false],
     }),
-    address: this.builder.group({
+    addOn: this.builder.group({
       onlineService: [true],
       largerStorage: [true],
       customizableProfile: [false],
@@ -56,9 +57,11 @@ export class StepperComponent implements OnInit {
     } else if (this.stepper.selectedIndex === 1 && this.planForm.valid) {
       this.stepper.next();
       console.log('Plan Info:', this.planForm.value);
-    } else if (this.stepper.selectedIndex === 2 && this.addressForm.valid) {
+    } else if (this.stepper.selectedIndex === 2 && this.addOn.valid) {
       this.stepper.next();
-      console.log('Address Info:', this.addressForm.value);
+      console.log('Add-on Info:', this.addOn.value);
+    } else if (this.stepper.selectedIndex === 3) {
+      this.handleSubmit();
     }
   }
 
@@ -68,8 +71,8 @@ export class StepperComponent implements OnInit {
   get planForm() {
     return this.Empregister.get('plan') as FormGroup;
   }
-  get addressForm() {
-    return this.Empregister.get('address') as FormGroup;
+  get addOn() {
+    return this.Empregister.get('addOn') as FormGroup;
   }
 
   get isYearly() {
@@ -77,8 +80,13 @@ export class StepperComponent implements OnInit {
   }
 
   handleSubmit() {
-    if (this.Empregister.valid) {
-      console.log(this.Empregister.value);
+    if (this.stepper.selectedIndex === 3) {
+      if (this.Empregister.valid) {
+        console.log(this.Empregister.value);
+        this.done = true;
+        // this.stepper.reset();
+        // Handle final form submission here
+      }
     }
   }
 }

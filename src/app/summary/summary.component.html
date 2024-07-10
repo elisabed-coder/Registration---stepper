@@ -1,21 +1,44 @@
 <div class="step-content">
   <h1>Finishing up</h1>
   <legend>Double-check everything looks OK before confirming.</legend>
-  <div>
-    <div>
+  <div class="price-container">
+    <div class="plan-box">
       <div>
-        <h3>plan name , monthly? yearly?</h3>
-        <button>Change</button>
+        <h3>
+          {{ planName }}
+          ({{ isYearly ? "Yearly" : "Monthly" }})
+        </h3>
+        <button (click)="toggleYearly()">Change</button>
       </div>
-      <span>plan price</span>
+      <span>{{ planPrice | currency }}/{{ isYearly ? "yr" : "mo" }}</span>
     </div>
+    <hr />
     <div>
-      <p>Add on name</p>
-      <span>add on price</span>
+      <div *ngIf="addOnForm.get('onlineService')?.value" class="add-on-box">
+        <p>Online Service</p>
+        <span>{{ isYearly ? "+$10/yr" : "+$1/mo" }}</span>
+      </div>
+      <div *ngIf="addOnForm.get('largerStorage')?.value" class="add-on-box">
+        <p>Larger Storage</p>
+        <span>{{ isYearly ? "+$20/yr" : "+$2/mo" }}</span>
+      </div>
+      <div
+        *ngIf="addOnForm.get('customizableProfile')?.value"
+        class="add-on-box"
+      >
+        <p>Customizable Profile</p>
+        <span>{{ isYearly ? "+$30/yr" : "+$3/mo" }}</span>
+      </div>
     </div>
-    <div>
-      <p>Total price():</p>
-      <span>total price</span>
+    <div class="total-price">
+      <p>Total ({{ isYearly ? "per year" : "per month" }})</p>
+      <span> {{ totalPrice | currency }}/{{ isYearly ? "yr" : "mo" }}</span>
     </div>
   </div>
+  <!-- <div class="buttons-box">
+    <button mat-button matStepperPrevious>Go Back</button>
+    <button mat-raised-button matStepperNext class="submit-btn" type="submit">
+      Submit
+    </button>
+  </div> -->
 </div>

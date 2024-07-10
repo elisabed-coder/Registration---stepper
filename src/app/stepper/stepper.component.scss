@@ -87,6 +87,9 @@
   border-left-width: 0px !important;
   border-left-style: none !important;
 }
+.buttons-box {
+  padding-left: 131px;
+}
 
 // ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
 //   // padding: 0.4375em 0;
@@ -125,11 +128,26 @@
 //     margin-bottom: 0.5rem;
 //   }
 // }
+.buttons-box {
+  .submit-btn {
+    // height: 4rem;
+    // width: 10.4rem;
+    // border-radius: 0.5rem;
+    // font-size: 21px;
+    // opacity: 1;
+    background-color: #473dff;
+    align-self: bottom;
+    // transition: all 0.3s ease;
+  }
+}
 
 @media (min-width: 1200px) {
   .container {
     min-height: 700px;
     align-items: center;
     padding: 1.4rem;
+  }
+  .buttons-box {
+    padding: 0 131px;
   }
 }

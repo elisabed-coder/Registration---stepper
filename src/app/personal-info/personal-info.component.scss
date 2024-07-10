@@ -6,15 +6,15 @@
 .step-content {
   display: flex;
   flex-direction: column;
-  h1 {
-    font-size: 43px;
-    font-weight: 600;
-  }
-  legend {
-    font-size: 21px;
-    margin-top: 0.7rem;
-    color: #9699ab;
-  }
+  // h1 {
+  //   font-size: 43px;
+  //   font-weight: 600;
+  // }
+  //  {
+  //   font-size: 21px;
+  //   margin-top: 0.7rem;
+  //   color: #9699ab;
+  // }
 }
 
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
@@ -98,7 +98,7 @@
 }
 
 @media (min-width: 1200px) {
-  .step-content {
-    padding: 3.1rem 113px 3.1rem 135px;
-  }
+  // .step-content {
+  //   padding: 3.1rem 113px 3.1rem 135px;
+  // }
 }

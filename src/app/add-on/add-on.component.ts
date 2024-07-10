@@ -7,14 +7,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./add-on.component.scss'],
 })
 export class AddOnComponent implements OnInit {
-  @Input() addressForm!: FormGroup;
+  @Input() addOn!: FormGroup;
   @Input() isYearly: boolean = false;
 
   constructor(private builder: FormBuilder) {}
 
   ngOnInit(): void {
-    if (!this.addressForm.contains('price')) {
-      this.addressForm.addControl('price', this.builder.control(0));
+    if (!this.addOn.contains('price')) {
+      this.addOn.addControl('price', this.builder.control(0));
     }
   }
 
@@ -32,8 +32,12 @@ export class AddOnComponent implements OnInit {
   }
 
   getThePrice() {
-    const selectedAddOns = this.addressForm.value;
-    let price = 0; // Calculate price
+    const selectedAddOns = {
+      onlineService: this.addOn.get('onlineService')?.value,
+      largerStorage: this.addOn.get('largerStorage')?.value,
+      customizableProfile: this.addOn.get('customizableProfile')?.value,
+    };
+    let price = 0;
     if (selectedAddOns.onlineService) {
       price += this.getAddonPrice('onlineService');
     }
@@ -43,7 +47,7 @@ export class AddOnComponent implements OnInit {
     if (selectedAddOns.customizableProfile) {
       price += this.getAddonPrice('customizableProfile');
     }
-    // this.addressForm.get('price')?.setValue(price); // Set price form control value
+    this.addOn.get('price')?.setValue(price); // Set price form control value
     return `$${price}/${this.isYearly ? 'yr' : 'mo'}`;
   }
 }

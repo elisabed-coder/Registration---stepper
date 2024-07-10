@@ -1,10 +1,10 @@
 <div class="step-container">
-  <div class="step-content" [formGroup]="addressForm">
+  <div class="step-content" [formGroup]="addOn">
     <h1 class="header">Pick add-ons</h1>
     <legend>Add-ons help enhance your gaming experience.</legend>
     <div
       class="check-box"
-      [ngClass]="{ selected: addressForm.get('onlineService')?.value }"
+      [ngClass]="{ selected: addOn.get('onlineService')?.value }"
     >
       <mat-checkbox formControlName="onlineService">
         <div>
@@ -16,7 +16,7 @@
     </div>
     <div
       class="check-box"
-      [ngClass]="{ selected: addressForm.get('largerStorage')?.value }"
+      [ngClass]="{ selected: addOn.get('largerStorage')?.value }"
     >
       <mat-checkbox formControlName="largerStorage">
         <div>
@@ -28,7 +28,7 @@
     </div>
     <div
       class="check-box"
-      [ngClass]="{ selected: addressForm.get('customizableProfile')?.value }"
+      [ngClass]="{ selected: addOn.get('customizableProfile')?.value }"
     >
       <mat-checkbox formControlName="customizableProfile">
         <div>
@@ -46,7 +46,7 @@
         class="submit-btn"
         (click)="getThePrice()"
       >
-        Submit
+        Next Step
       </button>
     </div>
   </div>

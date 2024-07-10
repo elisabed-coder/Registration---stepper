@@ -24,9 +24,44 @@ body {
 .mat-typography p,
 .mat-body.mat-h2,
 .mat-title,
-.mat-typography h2 {
+.mat-typography h2,
+.mat-h3,
+.mat-subheading-2,
+.mat-typography h3 {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Ubuntu", sans-serif;
+}
+
+.buttons-box {
+  display: flex;
+  justify-content: space-between;
+  font-size: 21px;
+
+  .submit-btn {
+    background-color: #02295a;
+    color: #f0f6ff;
+    align-self: right bottom;
+    height: 4rem;
+    width: 10.4rem;
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .step-content {
+    padding: 3.1rem 113px 3.1rem 135px;
+
+    h1 {
+      font-size: 43px;
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+    }
+    legend {
+      font-size: 21px;
+      color: #9699ab;
+      margin-bottom: 2.1rem;
+    }
+  }
 }
