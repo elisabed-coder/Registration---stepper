@@ -22,12 +22,14 @@
         "
         tabindex="0"
       >
-        <div class="icon-container" [style.background-color]="plan.bgColor">
-          <i [class]="plan.icon"></i>
+        <div class="icon-container">
+          <img [src]="plan.icon" alt="{{ plan.name }} icon" />
         </div>
-        <h2>{{ plan.name }}</h2>
-        <span>{{ getPrice(plan) }}</span>
-        <p *ngIf="planForm.get('isYearly')?.value">2 months free</p>
+        <div>
+          <h2>{{ plan.name }}</h2>
+          <span>{{ getPrice(plan) }}</span>
+          <p *ngIf="planForm.get('isYearly')?.value">2 months free</p>
+        </div>
       </div>
     </div>
     <div class="selectPlan">

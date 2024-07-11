@@ -1,4 +1,5 @@
-import { CdkStepper } from '@angular/cdk/stepper';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { CdkStepper, StepperOrientation } from '@angular/cdk/stepper';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import {
   FormBuilder,
@@ -8,6 +9,7 @@ import {
 } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatStepper } from '@angular/material/stepper';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-stepper',
@@ -20,8 +22,17 @@ export class StepperComponent implements OnInit {
   isLinear = true;
   done: boolean = false;
   @ViewChild('stepper') private stepper!: MatStepper;
+  stepperOrientation!: Observable<StepperOrientation>;
 
-  constructor(private builder: FormBuilder) {}
+  constructor(
+    private builder: FormBuilder,
+    breakpointObserver: BreakpointObserver
+  ) {
+    this.stepperOrientation = breakpointObserver
+      .observe('(min-width: 1199px)')
+      .pipe(map(({ matches }) => (matches ? 'vertical' : 'horizontal')));
+  }
+
   Empregister = this.builder.group({
     personalInfo: this.builder.group({
       fullname: this.builder.control('', [

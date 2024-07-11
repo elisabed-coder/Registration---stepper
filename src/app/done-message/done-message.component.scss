@@ -2,7 +2,6 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   text-align: center;
   padding-top: 10rem;
   article {
@@ -19,7 +18,7 @@ section {
   }
 }
 
-@media (min-width: 1300px) {
+@media (min-width: 1200px) {
   h1 {
     margin-bottom: 1.2rem;
     margin-top: 2.2rem;

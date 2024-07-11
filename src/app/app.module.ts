@@ -25,6 +25,8 @@ import { SummaryComponent } from './summary/summary.component';
 import { RouterModule } from '@angular/router';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { DoneMessageComponent } from './done-message/done-message.component'; // Ensure this import is present
+import { StepperOrientation } from '@angular/material/stepper';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,7 @@ import { DoneMessageComponent } from './done-message/done-message.component'; //
     MatSlideToggleModule,
     FormsModule,
     MatCheckboxModule,
+    MatStepperModule,
   ],
   exports: [CdkStepperModule],
   providers: [

@@ -52,7 +52,6 @@ body {
 @media (min-width: 1200px) {
   .step-content {
     padding: 3.1rem 113px 3.1rem 135px;
-
     h1 {
       font-size: 43px;
       font-weight: 600;
@@ -63,5 +62,31 @@ body {
       color: #9699ab;
       margin-bottom: 2.1rem;
     }
+  }
+}
+
+@media (max-width: 1199px) {
+  .mat-horizontal-content-container {
+    background-color: #f0f6ff;
+  }
+  .step-container {
+    top: 7.5rem;
+    min-height: 900px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    top: 7.5rem;
+    position: relative;
+    z-index: 5;
+  }
+  .step-content {
+    // display: flex;
+    // flex-direction: column;
+    background: #fff;
+    // width: 60%;
+    padding: 2rem 1.5rem;
+    width: 60%;
+    min-width: 345px;
+    border-radius: 0.8rem;
   }
 }

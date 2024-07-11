@@ -1,7 +1,17 @@
+<!-- @switch (stepperOrientation | async) { @case ('vertical') {
+<div>Make your screen smaller to see a vertical stepper</div>
+} @case ('horizontal') {
+<div>Make your screen larger to see a horizontal stepper</div>
+} } -->
+
 <div class="container">
   <form [formGroup]="Empregister">
-    <div class="form-layout">
-      <div class="step-info">
+    <div
+      class="step-info"
+      orientation="horizontal
+    "
+    >
+      <div class="aside">
         <div
           class="step-label"
           [ngClass]="{ active: stepper.selectedIndex === 0 }"
@@ -40,9 +50,9 @@
       </div>
       <mat-stepper
         class="custom-stepper"
-        orientation="vertical"
         [linear]="isLinear"
         #stepper
+        [orientation]="(stepperOrientation | async)!"
       >
         >
         <mat-step [stepControl]="personalForm">
