@@ -1,20 +1,10 @@
 .step-container {
   display: flex;
   align-items: flex-start;
-}
-
-.step-content {
-  display: flex;
-  flex-direction: column;
-  // h1 {
-  //   font-size: 43px;
-  //   font-weight: 600;
-  // }
-  //  {
-  //   font-size: 21px;
-  //   margin-top: 0.7rem;
-  //   color: #9699ab;
-  // }
+  .step-content {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 ::ng-deep .mat-form-field-appearance-legacy .mat-form-field-infix {
@@ -103,7 +93,5 @@
     position: relative;
     z-index: 2;
     justify-content: center;
-
-    // background-image: url("/assets/images/bg-sidebar-mobile.svg");
   }
 }

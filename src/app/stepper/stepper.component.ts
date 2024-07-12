@@ -16,8 +16,6 @@ import { matStepperAnimations } from '@angular/material/stepper';
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss'],
-  // standalone: true,
-  // imports: [MatRadioModule, FormsModule],
 })
 export class StepperComponent implements OnInit {
   isLinear = true;

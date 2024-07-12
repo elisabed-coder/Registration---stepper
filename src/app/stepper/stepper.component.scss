@@ -60,10 +60,6 @@
     background-color: #bfe2fd;
   }
 }
-// .custom-stepper {
-//   flex: 2;
-//   margin-left: 40px;
-// }
 
 // /* Hide default step labels */
 ::ng-deep .mat-step-header {
@@ -176,14 +172,6 @@
     }
   }
 }
-// ::ng-deep .mat-horizontal-stepper-content {
-//   transition-delay: 50ms;
-// }
-// ::ng-deep .mat-horizontal-stepper-wrapper {
-//   position: relative;
-//   z-index: 30;
-//   margin-top: 10.8rem; /* Match the height of your aside */
-// }
 
 @media (max-width: 930px) {
   .buttons-box {

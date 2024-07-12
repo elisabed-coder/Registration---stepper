@@ -5,10 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PersonalInfoComponent } from './personal-info/personal-info.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  matStepperAnimations,
-  MatStepperModule,
-} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,8 +25,6 @@ import { SummaryComponent } from './summary/summary.component';
 import { RouterModule } from '@angular/router';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { DoneMessageComponent } from './done-message/done-message.component'; // Ensure this import is present
-import { StepperOrientation } from '@angular/material/stepper';
-import { BreakpointObserver } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [

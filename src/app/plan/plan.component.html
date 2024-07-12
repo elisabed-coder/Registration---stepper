@@ -2,12 +2,6 @@
   <div class="step-content">
     <h1>Select your plan</h1>
     <legend>You have the option of monthly or yearly billing</legend>
-    <!-- <div
-      *ngIf="submitted && !planForm.get('chosenPlan')?.value"
-      class="validation-message"
-    >
-      Plan is required
-    </div> -->
     <div class="plans">
       <div
         *ngFor="let plan of plans; trackBy: trackByFn"
