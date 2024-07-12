@@ -37,6 +37,9 @@
   display: flex;
   justify-content: space-between;
   margin-top: 6.5rem;
+  .goBack {
+    font-size: 22px;
+  }
   .next-button {
     background-color: #02295a;
     color: #f0f6ff;
@@ -105,6 +108,8 @@
   .button-container {
     display: flex;
     justify-content: space-between;
+    // position: absolute;
+    // bottom: 0;
   }
   .selectPlan {
     margin-top: 1.5rem;

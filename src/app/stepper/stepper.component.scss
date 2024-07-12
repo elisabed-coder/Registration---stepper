@@ -5,19 +5,17 @@
   background-color: #ffff;
   overflow: hidden;
   max-width: 1190px;
-}
 
-.step-info {
-  display: flex;
-}
-
-.aside {
-  padding: 3.15rem 2.5rem;
-  color: white;
-  background-image: url("/assets/images/bg-sidebar-desktop.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 1rem;
+  .step-info {
+    display: flex;
+    .aside {
+      padding: 3.15rem 2.5rem;
+      color: white;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: 1rem;
+    }
+  }
 }
 
 .step-label {
@@ -91,24 +89,45 @@
 }
 
 .buttons-box {
+  position: relative;
+  z-index: 30;
   .submit-btn {
     background-color: #473dff;
     align-self: bottom;
   }
 }
 
+.mat-button-wrapper {
+  font-size: 22px !important;
+}
+
+::ng-deep .mat-horizontal-stepper-content {
+  visibility: visible !important;
+  position: relative;
+  z-index: 30 !important;
+}
+
 @media (min-width: 1200px) {
   .container {
     align-items: center;
     padding: 1.4rem;
+    box-shadow: 0 7px 29px 0 hsla(240, 5%, 41%, 0.2);
+
     .aside {
       width: 365px;
       min-width: 365px;
       min-height: 700px;
+      background-image: url("/assets/images/bg-sidebar-desktop.svg");
     }
   }
+
   .buttons-box {
     padding: 0 131px;
+    z-index: 17;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    right: 0;
   }
 }
 
@@ -116,7 +135,9 @@
   .step-info {
     flex-direction: column;
     min-width: 100%;
-    // background-image: url("/assets/images/bg-sidebar-mobile.svg");
+    position: relative;
+    z-index: 30;
+    overflow: visible;
     .aside {
       display: flex;
       justify-content: center;
@@ -124,12 +145,12 @@
       background-image: url("/assets/images/bg-sidebar-mobile.svg");
       align-items: flex-start;
       height: 10.8rem;
-      // position: absolute;
-      // top: 0;
-      // left: 0;
       min-width: 100%;
       position: absolute;
       z-index: 2;
+      top: 0;
+      left: 0;
+      right: 0;
 
       .step-label > p {
         display: none;
@@ -138,11 +159,34 @@
   }
   .container {
     min-width: 100%;
-    position: relative;
+    position: absolute;
+    z-index: 5;
     border-radius: 0;
     background-color: #f0f6ff;
   }
-  // .mat-horizontal-content-container {
-  //   background-color: #f0f6ff !important;
-  // }
+
+  .buttons-box {
+    padding: 0 15rem;
+    z-index: 17;
+    position: relative;
+    right: 0;
+    bottom: 20rem;
+    .goBack {
+      font-size: 22px;
+    }
+  }
+}
+// ::ng-deep .mat-horizontal-stepper-content {
+//   transition-delay: 50ms;
+// }
+// ::ng-deep .mat-horizontal-stepper-wrapper {
+//   position: relative;
+//   z-index: 30;
+//   margin-top: 10.8rem; /* Match the height of your aside */
+// }
+
+@media (max-width: 930px) {
+  .buttons-box {
+    padding: 0px 12rem;
+  }
 }

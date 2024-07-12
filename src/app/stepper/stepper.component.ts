@@ -10,6 +10,7 @@ import {
 import { MatRadioModule } from '@angular/material/radio';
 import { MatStepper } from '@angular/material/stepper';
 import { map, Observable } from 'rxjs';
+import { matStepperAnimations } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-stepper',

@@ -7,6 +7,7 @@
   justify-content: space-between;
   align-items: center;
   font-weight: 500 !important;
+  font-size: 18px;
 
   .mat-h3,
   .mat-subheading-2,
@@ -106,5 +107,25 @@ hr {
       height: 4rem;
       width: 10.4rem;
     }
+  }
+}
+
+@media (max-width: 1199px) {
+  .add-on-box {
+    font-size: 20px;
+    margin-top: 0.5rem;
+  }
+  .total-price {
+    font-size: 22px;
+    margin-top: 4rem;
+  }
+  .plan-box {
+    font-size: 24px;
+    button {
+      font-size: 22px;
+    }
+  }
+  span {
+    font-size: 22px;
   }
 }
